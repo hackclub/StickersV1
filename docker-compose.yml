@@ -10,7 +10,7 @@ services:
       - path: ./backend/.env
         required: false
     environment:
-      FRONTEND_URL: ${FRONTEND_URL:-http://localhost:5173}
+      FRONTEND_URL: ${FRONTEND_URL:-https://stickers.hackclub.com}
 
   frontend:
     build:
@@ -20,7 +20,7 @@ services:
     expose:
       - "3000"
     environment:
-      ORIGIN: ${ORIGIN:-http://localhost:5173}
+      ORIGIN: ${ORIGIN:-https://stickers.hackclub.com}
       BACKEND_URL: http://backend:9292
-    depends_on:
+    depends_on:     
       - backend
