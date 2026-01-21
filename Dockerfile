@@ -1,4 +1,7 @@
 
+# =============================================================================
+# BACKEND (Ruby/Puma)
+# =============================================================================
 FROM ruby:3.3-alpine AS backend
 RUN apk add --no-cache build-base tzdata
 WORKDIR /app
@@ -10,7 +13,9 @@ COPY backend/ .
 EXPOSE 9292
 CMD ["bundle", "exec", "puma", "-p", "9292", "-e", "production"]
 
-# frontend
+# =============================================================================
+# FRONTEND (SvelteKit/Node)
+# =============================================================================
 
 FROM node:22-alpine AS frontend
 WORKDIR /app
