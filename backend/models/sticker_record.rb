@@ -5,10 +5,12 @@ class StickerRecord < AirctiveRecord::Base
   self.table_name = 'stickerDB'
 
   field :name, 'Sticker Name'
-  field :image, 'CDN_URL'
+  field :image_attachment, 'image_preview'
   field :artist, 'Artist'
   field :event, 'Event'
   field :owned_by, 'owned_by'
+
+  def image = image_attachment&.dig(0, "url")
 
   def as_json(options = nil)
     user_id = options&.dig(:user_id)
