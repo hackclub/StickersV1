@@ -1,4 +1,4 @@
-frozen_string_literal: true
+# frozen_string_literal: true
 
 class StickerRecord < AirctiveRecord::Base
   self.base_key = ENV['AIRTABLE_BASE_ID']

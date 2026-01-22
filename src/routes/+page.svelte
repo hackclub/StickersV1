@@ -44,11 +44,42 @@
       {/snippet}
     </Peelable>
 
+    <Peelable 
+      class="see-stickers-sticker"
+      corner="bottom-right"
+      peelOnHover={true}
+      hoverPeelAmount={0.4}
+      peelOnClick={true}
+      peelAwayDuration={1000}
+      onPeelComplete={() => window.location.href = '/archive'}
+      borderRadius="0.5rem"
+    >
+      {#snippet topContent()}
+        <div class="see-stickers-face">
+          View Stickers
+          <span class="subtext">no sign in needed</span>
+        </div>
+      {/snippet}
+      {#snippet backContent()}
+        <div class="sticker-back"></div>
+      {/snippet}
+      {#snippet bottomContent()}
+        <div class="sticker-surface">
+          <span>Loading...</span>
+        </div>
+      {/snippet}
+    </Peelable>
+
     <footer><a href="https://hackclub.com/privacy-and-terms/" target="_blank" rel="noopener noreferrer">Privacy and Terms</a></footer>
   </div>
-<footer class="site-footer">
-  <b>THIS SITE IS UNDER CONSTRUCTION</b>
-</footer>
+  <div class="construction-notice">
+    🚧 Site still Under Construction!
+  </div>
+  <div class="bottom-footers">
+    <footer class="open-source-footer">
+      <a href="https://github.com/hackclub/stickers?tab=readme-ov-file" target="_blank" rel="noopener noreferrer">open source, drop us a <h3 style="display:inline">★</h3></a>
+    </footer>
+  </div>
 </div>
 
 <style>
@@ -72,10 +103,18 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    min-height: 100vh;
     font-family: 'Departure Mono', monospace;
     padding: 2rem;
     box-sizing: border-box;
+    position: relative;
+  }
+
+  .bottom-footers {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
   }
 
   .hero-logo {
@@ -167,11 +206,53 @@
     color: #666;
     margin-top: 1rem;
   }
-  .site-footer {
-    background: #000000;
-    color: #ff0000;
+  .construction-notice {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid #ccc;
+    border-radius: 0.5rem;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.85rem;
+    font-family: 'Departure Mono', monospace;
+    color: #666;
+  }
+  .open-source-footer {
+    font-weight: bold;
+    color: rgba(0, 0, 0);
     text-align: center;
-    padding: 1rem;
-    font-size: 2rem;
+    padding: 0.5rem;
+    font-size: 0.9rem;
+    font-family: sans-serif;
+    text-decoration: none;
+  }
+
+  :global(.see-stickers-sticker) {
+    width: clamp(150px, 20vw, 300px);
+    min-height: clamp(45px, 6vw, 80px);
+    cursor: pointer;
+  }
+
+  .see-stickers-face {
+    width: 100%;
+    height: 100%;
+    background: #8a9bb0;
+    border-radius: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-family: 'Departure Mono', monospace;
+    font-size: clamp(1rem, 3vw, 1.5rem);
+    padding: 0.5rem;
+    box-sizing: border-box;
+  }
+
+  .see-stickers-face .subtext {
+    font-size: clamp(0.5rem, 1.5vw, 0.7rem);
+    color: rgba(255, 255, 255, 0.85);
+    margin-top: 0.2rem;
   }
 </style>

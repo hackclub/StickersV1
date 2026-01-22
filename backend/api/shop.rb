@@ -11,9 +11,10 @@ class Shop < Grape::API
 
     route_param :id, type: String do
       get do
-        record = shopRecord.find(params[:id])
+        record = ShopRecord.find(params[:id])
         error!('not found', 404) unless record
         record.as_json
+      end
     end
   end
 end
