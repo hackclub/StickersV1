@@ -58,10 +58,10 @@ cp .env.example .env
 npm install
 npm run dev
 
-# In a separate terminal, for the backend:
+In a separate terminal
 cd backend
 cp .env.example .env
-# Edit .env and set SESSION_SECRET to a 64+ char string (run: openssl rand -hex 64)
+Edit .env 
 bundle config set --local path 'vendor/bundle'
 bundle install
 bundle exec rackup config.ru -p 9292
