@@ -92,8 +92,8 @@
   }
 
   :global(html, body) {
-    overflow: hidden;
-    height: 100%; 
+    overflow: auto;
+    height: auto; 
     margin: 0;
     padding: 0;
   }
