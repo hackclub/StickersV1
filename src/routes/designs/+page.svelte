@@ -1,6 +1,7 @@
 <script>
   let selectedRarity = $state('all');
   let searchQuery = $state('');
+  const mockDesigns = [];
 
 
 </script>

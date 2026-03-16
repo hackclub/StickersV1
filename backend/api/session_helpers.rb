@@ -6,8 +6,9 @@ module SessionHelpers
   end
 
   def current_user
-      return nil unless session[:user]
-      @current_user ||= User.new(session[:user])
+    return nil unless session[:user]
+
+    @current_user ||= User.new(session[:user])
   end
 
   def authenticate!

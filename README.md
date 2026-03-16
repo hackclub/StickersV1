@@ -55,8 +55,8 @@
 <pre>
 git clone https://github.com/hackclub/stickers
 cp .env.example .env
-npm install
-npm run dev
+pnpm install
+pnpm run dev
 
 In a separate terminal
 cd backend
@@ -103,6 +103,7 @@ In general we're happy to help you over DM, but please have a glance over the co
 
 <p>
   Made with &lt;3 by
-  <a href="https://github.com/24c02">nora</a> and
-  <a href="https://github.com/EDripper">euan</a>.
+  <a href="https://github.com/24c02">nora</a>,
+  <a href="https://github.com/EDripper">euan</a> and,
+  <a href="https://github.com/System-End">end</a>.
 </p>

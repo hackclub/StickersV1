@@ -2,7 +2,7 @@
 
 class Design < AirctiveRecord::Base
   self.base_key = ENV['AIRTABLE_BASE_ID']
-  self.table_name = 'designs'
+  self.table_name = ENV['AIRTABLE_DESIGN_TABLE_ID']
 
   field :name, 'Name'
   field :description, 'Description'
@@ -21,7 +21,7 @@ class Design < AirctiveRecord::Base
 
   def vote!(user_id)
     voted_users = voted_list
-    
+
     if voted_users.include?(user_id)
       voted_users.delete(user_id)
       self.votes = [votes.to_i - 1, 0].max
@@ -29,7 +29,7 @@ class Design < AirctiveRecord::Base
       voted_users << user_id
       self.votes = votes.to_i + 1
     end
-    
+
     self.voted_by = voted_users.join(',')
     save
   end

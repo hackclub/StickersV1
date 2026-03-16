@@ -1,4 +1,5 @@
 class Sticker < ApplicationRecord
+  self.base_key = ENV['AIRTABLE_BASE_ID']
   self.table_name = "tbl9kLyUrZNCJWf3L"
 
   field :name, "Name"

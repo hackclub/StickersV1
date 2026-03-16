@@ -20,20 +20,19 @@
 
   function openMakeDeal() {
     showModal = true;
-    showModal()
   }
 
   function closeModal() {
     showModal = false;
   }
 
-if (showModal) {
-  document.body.style.overflow = 'hidden';
-  alert('test');
-
-} else {
-  document.body.style.overflow = 'auto';
-}
+  $effect(() => {
+    if (showModal) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+  });
 </script>
 
 <h1><mark>Trade</mark></h1>

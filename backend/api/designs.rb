@@ -7,13 +7,13 @@ class Designs < Grape::API
     get :all do
       error!('Unauthorized', 401) unless current_user
       user_id = current_user.identifier
-      DesignsTable.all.map { |d| d.as_approved_json(user_id) }
+      Design.approved.all.map { |d| d.as_approved_json(user_id: user_id) }
     end
 
     get do
       error!('Unauthorized', 401) unless current_user
       user_id = current_user.identifier
-      Design.by_user(user_id).all.map { |d| d.as_approved_json(user_id) }
+      Design.by_user(user_id).all.map { |d| d.as_json(user_id: user_id) }
     end
 
     post do
@@ -24,17 +24,12 @@ class Designs < Grape::API
       safe_fields['Status'] = 'pending'
       Design.create(safe_fields)
     end
-  
-      
-    
-     
-
 
     route_param :id do
       post :vote do
         error!('Unauthorized', 401) unless current_user
-        user_id = current_user[:slack_id] || current_user[:id]
-        design = DesignsTable.find(params[:id])
+        user_id = current_user.identifier
+        design = Design.find(params[:id])
         error!('Design not found', 404) unless design
 
         voted_by = (design['voted_by'] || '').split(',').map(&:strip).reject(&:empty?)

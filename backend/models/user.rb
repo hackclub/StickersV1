@@ -4,10 +4,10 @@ class User
   attr_accessor :id, :email, :name, :slack_id
 
   def initialize(attrs = {})
-    @id = attrs[:id]
-    @email = attrs[:email]
-    @name = attrs[:name]
-    @slack_id = attrs[:slack_id]
+    @id = attrs[:id] || attrs['id']
+    @email = attrs[:email] || attrs['email']
+    @name = attrs[:name] || attrs['name']
+    @slack_id = attrs[:slack_id] || attrs['slack_id']
   end
 
   def self.from_omniauth(auth)

@@ -7,14 +7,14 @@ class Stickers < Grape::API
   resource :stickers do
     get do
       user_id = current_user&.identifier
-      StickerRecord.all.map { |r| r.as_json(user_id: user_id) }
+      StickerRecord.visible.map { |r| r.as_json(user_id: user_id) }
     end
 
     route_param :id, type: String do
       before { authenticate! }
       get do
-        record = StickersRecord.find(params[:id])
-        error!('not found', 404) unless record
+        record = StickerRecord.find(params[:id])
+        error!('not found', 404) unless record&.allowed
         record.as_detail_json
       end
     end
