@@ -68,7 +68,7 @@ bundle exec rackup config.ru -p 9292
 </pre>
 
 <h3>API Usage</h3>
-<p>You can use the prod backend to get a list of all hackclub stickers in JSON, prod backend is https://fccg0c4s0kcggwk0k4s8wggc.a.selfhosted.hackclub.com. Please don't hammer it to hard, let us know what you're up to and we can help you coexist within the rate limit. Locally the backend is ran on port 9292 and exposes the following endpoints:</p>
+<p>You can use <code>stickers.hackclub.com/api/</code> to get a list of all Hack Club stickers in JSON. Please don't hammer it too hard — let us know what you're up to and we can help you coexist within the rate limit. Locally the backend runs on port 9292 and exposes the following endpoints:</p>
 
 <h4>Authentication</h4>
 <ul>
@@ -80,7 +80,7 @@ bundle exec rackup config.ru -p 9292
 
 <h4>Stickers</h4>
 <ul>
-  <li><code>GET /stickers</code> - List all stickers</li>
+  <li><code>GET /stickers</code> - List all visible stickers</li>
   <li><code>GET /stickers/:id</code> - Get sticker details (requires auth)</li>
 </ul>
 
@@ -98,12 +98,12 @@ bundle exec rackup config.ru -p 9292
   <li><code>GET /shop/:id</code> - Get shop item details</li>
 </ul>
 
-Our airtable has no sensitive data, if you want a read only personal access token scoped to the base we can provide it!
+Our Airtable has no passwords or secrets — if you want a read-only personal access token scoped to the base we can provide it!
 In general we're happy to help you over DM, but please have a glance over the code first!
 
 <p>
   Made with &lt;3 by
   <a href="https://github.com/24c02">nora</a>,
-  <a href="https://github.com/EDripper">euan</a> and,
+  <a href="https://github.com/EDripper">euan</a>, and
   <a href="https://github.com/System-End">end</a>.
 </p>

@@ -21,6 +21,6 @@ services:
       - "3000"
     environment:
       ORIGIN: ${ORIGIN:-https://stickers.hackclub.com}
-      BACKEND_URL: http://backend:9292
-    depends_on:     
+      BACKEND_URL: ${BACKEND_URL:-https://stickers.hackclub.com}
+    depends_on:
       - backend
