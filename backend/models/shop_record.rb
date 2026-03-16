@@ -5,7 +5,7 @@ class ShopRecord < AirctiveRecord::Base
   self.table_name = ENV['AIRTABLE_SHOP_TABLE_ID']
 
   field :name, 'Sticker Name'
-  field :image, 'CDN_URL'
+  field :image, 'posted_URL'
   field :price, 'Cost'
   field :description, 'Description'
 

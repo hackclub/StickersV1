@@ -22,7 +22,7 @@ class StickerRecord < AirctiveRecord::Base
     {
       id: id,
       name: name,
-      image: image,
+      image: posted_URL,
       artist: artist,
       event: event,
       event_URL: event_url,
