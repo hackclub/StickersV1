@@ -5,7 +5,7 @@ class StickerRecord < AirctiveRecord::Base
   self.table_name = ENV['AIRTABLE_STICKER_DB_TABLE_ID']
 
   field :name, 'Sticker Name'
-  field :image_attachment, 'image_preview'
+  field :image, 'posted_URL'
   field :artist, 'Artist'
   field :event, 'Event'
   field :owned_by, 'owned_by'
@@ -14,7 +14,6 @@ class StickerRecord < AirctiveRecord::Base
 
   scope :visible, -> { where(allowed: true) }
 
-  def image = image_attachment&.dig(0, "url")
 
   def as_json(options = nil)
     user_id = options&.dig(:user_id)
@@ -22,7 +21,7 @@ class StickerRecord < AirctiveRecord::Base
     {
       id: id,
       name: name,
-      image: posted_URL,
+      image: image,
       artist: artist,
       event: event,
       event_URL: event_url,
