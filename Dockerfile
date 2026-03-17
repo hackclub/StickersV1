@@ -18,11 +18,12 @@ CMD ["bundle", "exec", "puma", "-p", "9292", "-e", "production"]
 # =============================================================================
 
 FROM node:22-alpine AS frontend
+RUN corepack enable && corepack prepare pnpm@latest --activate
 WORKDIR /app
-COPY package*.json ./
-RUN npm ci
+COPY package.json pnpm-lock.yaml ./
+RUN pnpm install --frozen-lockfile
 COPY . .
-RUN npm run build
-RUN npm prune --omit=dev
+RUN pnpm run build
+RUN pnpm prune --prod
 EXPOSE 3000
 CMD ["node", "build"]
