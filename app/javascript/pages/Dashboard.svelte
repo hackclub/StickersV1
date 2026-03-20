@@ -1,31 +1,46 @@
 <script>
     import Navbar from "../components/Navbar.svelte";
     import Background from "../components/Background.svelte";
-    import Peelable from "../components/Peelable.svelte";
-    import stickersBg from "../assets/images/stickers.jpg";
+    // import Peelable from "../components/Peelable.svelte";
+    // import stickersBg from "../assets/images/stickers.jpg";
 
     let { auth } = $props();
 
-    function goToTrade() {
-        window.location.href = "/trade";
-    }
+    // function goToTrade() {
+    //     window.location.href = "/trade";
+    // }
 
-    function goToEarn() {
-        window.location.href = "/shop";
-    }
+    // function goToEarn() {
+    //     window.location.href = "/shop";
+    // }
 
-    function goToVote() {
-        window.location.href = "/vote";
-    }
+    // function goToVote() {
+    //     window.location.href = "/vote";
+    // }
 
-    function goToStickers() {
-        window.location.href = "/stickers";
-    }
+    // function goToStickers() {
+    //     window.location.href = "/stickers";
+    // }
 </script>
 
 <Background />
-<Navbar active="dash" />
+<Navbar active="dash" {auth} />
 
+<main class="page-content">
+    <h1><mark>Dashboard</mark></h1>
+
+    <div class="construction-card">
+        <div class="construction-icon">🚧</div>
+        <h2>Under Construction</h2>
+        <p>
+            Your personal sticker dashboard is being built! Soon you'll be able
+            to manage your collection, track trades, and more.
+        </p>
+        <p class="hint">Check back later for updates.</p>
+    </div>
+</main>
+
+<!-- ORIGINAL DASHBOARD - COMMENTED OUT FOR NOW
 <main class="page-content">
     <div class="layout">
         <div class="left-column">
@@ -126,6 +141,7 @@
         </div>
     </div>
 </main>
+-->
 
 <style>
     .page-content {
@@ -133,6 +149,69 @@
         font-family: "Departure Mono", monospace;
     }
 
+    h1 {
+        font-size: 3rem;
+        margin: 0 0 2rem 0;
+    }
+
+    mark {
+        background-color: #d9c9b6;
+        padding: 0 0.2rem;
+    }
+
+    .construction-card {
+        background: rgba(255, 255, 255, 0.95);
+        padding: 3rem;
+        border-radius: 0.5rem;
+        border: 2px solid #333;
+        text-align: center;
+        max-width: 600px;
+    }
+
+    .construction-icon {
+        font-size: 4rem;
+        margin-bottom: 1rem;
+    }
+
+    .construction-card h2 {
+        font-size: 2rem;
+        margin: 0 0 1.5rem 0;
+    }
+
+    .construction-card p {
+        font-size: 1.25rem;
+        margin: 0 0 1rem 0;
+        line-height: 1.6;
+    }
+
+    .hint {
+        color: #666;
+        font-size: 1rem !important;
+    }
+
+    @media (max-width: 768px) {
+        h1 {
+            font-size: 2rem;
+        }
+
+        .construction-card {
+            padding: 2rem;
+        }
+
+        .construction-card h2 {
+            font-size: 1.5rem;
+        }
+
+        .construction-card p {
+            font-size: 1rem;
+        }
+
+        .construction-icon {
+            font-size: 3rem;
+        }
+    }
+
+    /* ORIGINAL STYLES - KEPT FOR WHEN DASHBOARD IS READY
     .layout {
         display: flex;
         gap: 2rem;
@@ -218,11 +297,6 @@
         margin: 0;
     }
 
-    h1 {
-        font-size: 3rem;
-        margin: 0 0 2rem 0;
-    }
-
     .card {
         background: rgba(250, 248, 245, 0.95);
         padding: 1.5rem;
@@ -268,11 +342,6 @@
         height: 100%;
         background: #d9c9b6;
         border-radius: 0.5rem;
-    }
-
-    mark {
-        background-color: #d9c9b6;
-        padding: 0 0.2rem;
     }
 
     @media (max-width: 1400px) {
@@ -334,4 +403,5 @@
         border-radius: 0 0.5rem 0.5rem 0;
         border-left: 1px solid #333;
     }
+    */
 </style>
