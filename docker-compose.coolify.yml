@@ -1,0 +1,64 @@
+
+# Required Environment Variables (set in Coolify UI):
+# - SECRET_KEY_BASE
+# - DATABASE_URL
+# - AIRTABLE_PAT
+# - AIRTABLE_BASE_ID
+# - AIRTABLE_STICKER_DB_TABLE_ID
+# - AIRTABLE_SHOP_TABLE_ID
+# - AIRTABLE_DESIGN_TABLE_ID
+# - OIDC_ISSUER
+# - OIDC_CLIENT_ID
+# - OIDC_CLIENT_SECRET
+# - OIDC_REDIRECT_URI
+
+services:
+  stickers:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    environment:
+      - RAILS_ENV=production
+      - RAILS_LOG_TO_STDOUT=true
+      - RAILS_SERVE_STATIC_FILES=true
+      - SECRET_KEY_BASE=${SECRET_KEY_BASE}
+      - DATABASE_URL=${DATABASE_URL}
+      - AIRTABLE_PAT=${AIRTABLE_PAT}
+      - AIRTABLE_BASE_ID=${AIRTABLE_BASE_ID}
+      - AIRTABLE_STICKER_DB_TABLE_ID=${AIRTABLE_STICKER_DB_TABLE_ID}
+      - AIRTABLE_SHOP_TABLE_ID=${AIRTABLE_SHOP_TABLE_ID}
+      - AIRTABLE_DESIGN_TABLE_ID=${AIRTABLE_DESIGN_TABLE_ID}
+      - OIDC_ISSUER=${OIDC_ISSUER}
+      - OIDC_CLIENT_ID=${OIDC_CLIENT_ID}
+      - OIDC_CLIENT_SECRET=${OIDC_CLIENT_SECRET}
+      - OIDC_REDIRECT_URI=${OIDC_REDIRECT_URI}
+      - AUTH_SUCCESS_REDIRECT=${AUTH_SUCCESS_REDIRECT:-/stickers}
+      - AUTH_LOGOUT_REDIRECT=${AUTH_LOGOUT_REDIRECT:-/}
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:80/up"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    depends_on:
+      db:
+        condition: service_healthy
+
+  db:
+    image: postgres:17-alpine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER:-stickers}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=${POSTGRES_DB:-stickers_production}
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-stickers}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  postgres_data:
