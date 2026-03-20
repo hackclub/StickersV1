@@ -17,7 +17,7 @@ gem "norairrecord", "~> 0.5"
 # Auth (OmniAuth OIDC)
 gem "omniauth", "~> 2.1"
 gem "omniauth_openid_connect", "~> 0.8"
-gem "omniauth-rails_csrf_protection", "~> 1.0"
+gem "omniauth-rails_csrf_protection", "~> 2.0"
 
 # Env vars + CORS
 gem "dotenv-rails", "~> 3.1"
