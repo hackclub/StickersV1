@@ -1,8 +1,0 @@
-.bundle
-.env
-.env.*
-!.env.example
-.git
-*.log
-.vendor
-

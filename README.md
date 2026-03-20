@@ -15,14 +15,12 @@
     alt="Hack Club logo"
   />
   <p>
-    The Svelte and Ruby codebase powering
+    The Rails 8 + Inertia.js + Svelte 5 codebase powering
     <a href="https://stickers.hackclub.com">stickers.hackclub.com</a>
   </p>
 </div>
 
-
 <hr style="margin-top: 0.1rem; margin-bottom: 0;">
-
 
 <h1>Hack Club Stickers</h1>
 
@@ -51,55 +49,81 @@
   </li>
 </ul>
 
-<h3>To spin up the codebase</h3>
+<h3>Development Setup</h3>
+
 <pre>
 git clone https://github.com/hackclub/stickers
-cp .env.example .env
-pnpm install
-pnpm run dev
+cd stickers
 
-In a separate terminal
-cd backend
-cp .env.example .env
-Edit .env 
-bundle config set --local path 'vendor/bundle'
+# Install dependencies
 bundle install
-bundle exec rackup config.ru -p 9292
+pnpm install
+
+# Set up environment
+cp .env.example .env
+# Edit .env with your credentials
+
+# Set up database
+bin/rails db:create db:migrate
+
+# Start the server (runs on port 3100)
+bin/dev
+</pre>
+
+<h3>Environment Variables</h3>
+
+<p>Required environment variables in <code>.env</code>:</p>
+
+<pre>
+# Airtable
+AIRTABLE_PAT=your_personal_access_token
+AIRTABLE_BASE_ID=your_base_id
+AIRTABLE_STICKER_DB_TABLE_ID=your_stickers_table_id
+AIRTABLE_DESIGN_TABLE_ID=your_designs_table_id
+AIRTABLE_SHOP_TABLE_ID=your_shop_table_id
+
+# OAuth (auth.hackclub.com)
+OIDC_CLIENT_ID=your_client_id
+OIDC_CLIENT_SECRET=your_client_secret
+OIDC_REDIRECT_URI=http://localhost:3100/auth/oidc/callback
 </pre>
 
 <h3>API Usage</h3>
-<p>You can use <code>stickers.hackclub.com/api/</code> to get a list of all Hack Club stickers in JSON. Please don't hammer it too hard — let us know what you're up to and we can help you coexist within the rate limit. Locally the backend runs on port 9292 and exposes the following endpoints:</p>
 
-<h4>Authentication</h4>
-<ul>
-  <li><code>GET /auth/login</code> - Redirects to OIDC provider for login</li>
-  <li><code>GET /auth/oidc/callback</code> - OAuth callback handler</li>
-  <li><code>GET /auth/logout</code> - Clears session and logs out</li>
-  <li><code>GET /auth/me</code> - Returns current authenticated user (requires auth)</li>
-</ul>
+<p>You can use <code>stickers.hackclub.com/api/</code> to get a list of all Hack Club stickers in JSON. Please don't hammer it too hard — let us know what you're up to and we can help you coexist within the rate limit.</p>
 
 <h4>Stickers</h4>
 <ul>
-  <li><code>GET /stickers</code> - List all visible stickers</li>
-  <li><code>GET /stickers/:id</code> - Get sticker details (requires auth)</li>
+  <li><code>GET /api/stickers</code> - List all visible stickers</li>
+  <li><code>GET /api/stickers/:id</code> - Get sticker details</li>
 </ul>
 
 <h4>Designs</h4>
 <ul>
-  <li><code>GET /designs</code> - List current user's designs (requires auth)</li>
-  <li><code>GET /designs/all</code> - List all designs (requires auth)</li>
-  <li><code>POST /designs</code> - Submit a new design (requires auth)</li>
-  <li><code>POST /designs/:id/vote</code> - Toggle vote on a design (requires auth)</li>
-</ul>
-
-<h4>Shop</h4>
-<ul>
-  <li><code>GET /shop</code> - List all shop items</li>
-  <li><code>GET /shop/:id</code> - Get shop item details</li>
+  <li><code>GET /api/designs</code> - List current user's designs (requires auth)</li>
+  <li><code>GET /api/designs/all</code> - List all designs (requires auth)</li>
+  <li><code>POST /api/designs</code> - Submit a new design (requires auth)</li>
+  <li><code>POST /api/designs/:id/vote</code> - Toggle vote on a design (requires auth)</li>
 </ul>
 
 Our Airtable has no passwords or secrets — if you want a read-only personal access token scoped to the base we can provide it!
 In general we're happy to help you over DM, but please have a glance over the code first!
+
+<h3>Deployment</h3>
+
+<p>The app is deployed using Docker. To deploy:</p>
+
+<pre>
+# Build assets for production
+bin/rails assets:precompile
+</pre>
+
+<p>deploy with Docker directly:</p>
+
+<pre>
+docker build -t stickers .
+docker run -p 3000:3000 --env-file .env stickers
+</pre>
 
 <p>
   Made with &lt;3 by
