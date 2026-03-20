@@ -11,10 +11,11 @@ module Airtable
     field :event, "Event"
     field :owned_by, "owned_by"
     field :allowed, "permission to show", type: :boolean
+    field :exists, "img exists", type: :boolean
     field :event_url, "event_URL"
     field :tags, "Tags"
 
-    scope :visible, -> { where(allowed: true) }
+    scope :visible, -> { where(allowed: true, exists: true) }
 
     def as_json(options = nil)
       user_id = options&.dig(:user_id)
