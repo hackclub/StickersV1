@@ -3,7 +3,7 @@
     import LazyImage from "../components/LazyImage.svelte";
     import hackClubLogo from "../assets/images/hackClubLogo.png";
 
-    /** @type {{ stickers: Array<{ id: string, name: string, image: string, owned?: boolean, tags?: string[], event_url?: string, artist?: string, event?: string }>, auth: { user: any, logged_in: boolean } }} */
+    /** @type {{ stickers: Array<{ id: string, name: string, image: string, owned?: boolean, tags?: string[], event_url?: string, artist?: string, event?: string, notes?: string }>, auth: { user: any, logged_in: boolean } }} */
     let { stickers = [], auth } = $props();
 
     let selectedFilter = $state("all");
@@ -179,6 +179,12 @@
                             <span class="info-value"
                                 >{selectedSticker.tags.join(", ")}</span
                             >
+                        </div>
+                    {/if}
+                    {#if selectedSticker.notes}
+                        <div class="notes-section">
+                            <span class="info-key">Notes:</span>
+                            <p class="notes-text">{selectedSticker.notes}</p>
                         </div>
                     {/if}
                 </div>
@@ -672,5 +678,25 @@
 
     .info-value {
         color: #555;
+    }
+
+    .notes-section {
+        margin-top: 1rem;
+        padding: 1rem;
+        background: rgba(250, 248, 245, 0.8);
+        border-radius: 0.5rem;
+        border-left: 3px solid #ec3750;
+    }
+
+    .notes-section .info-key {
+        display: block;
+        margin-bottom: 0.5rem;
+    }
+
+    .notes-text {
+        margin: 0;
+        color: #444;
+        line-height: 1.5;
+        white-space: pre-wrap;
     }
 </style>

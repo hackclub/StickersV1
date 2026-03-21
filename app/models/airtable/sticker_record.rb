@@ -14,6 +14,7 @@ module Airtable
     field :exists, "img exists", type: :boolean
     field :event_url, "event_URL"
     field :tags, "Tags"
+    field :notes, "Notes"
 
     scope :visible, -> { where(allowed: true, exists: true) }
 
@@ -28,6 +29,7 @@ module Airtable
         event: event,
         event_url: event_url,
         tags: parse_tags,
+        notes: notes,
         owned: user_id && owners.include?(user_id)
       }
     end
@@ -40,7 +42,8 @@ module Airtable
         artist: artist,
         event: event,
         event_url: event_url,
-        tags: parse_tags
+        tags: parse_tags,
+        notes: notes
       }
     end
 
