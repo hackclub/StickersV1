@@ -7,7 +7,7 @@ gem "pg", "~> 1.1"
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", ">= 5.0"
 # Inertia.js + Vite for Svelte 5 frontend
-gem "inertia_rails", "~> 3.18"
+gem "inertia_rails", "~> 3.19"
 gem "vite_rails", "~> 3.10"
 
 # Airtable ORM
