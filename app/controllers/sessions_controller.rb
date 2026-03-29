@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
 class SessionsController < ApplicationController
-  skip_forgery_protection only: :callback
+  # OAuth callback originates from external IdP, not our forms.
+  # CSRF protection is handled by OmniAuth's state parameter validation.
+  skip_forgery_protection only: :callback # codeql[rb/csrf-protection-disabled]
 
   def login
     redirect_to "/auth/oidc", allow_other_host: true
