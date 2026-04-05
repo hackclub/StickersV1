@@ -2,7 +2,7 @@
 
 class StickersController < ApplicationController
   def index
-    stickers = Airtable::StickerRecord.visible.all.map do |s|
+    stickers = Airtable::StickerRecord.all.map do |s|
       s.as_json(user_id: current_user&.identifier)
     end
 
@@ -13,7 +13,7 @@ class StickersController < ApplicationController
 
   def archive
     # Public page - no auth required
-    stickers = Airtable::StickerRecord.visible.all.map do |s|
+    stickers = Airtable::StickerRecord.all.map do |s|
       s.as_json(user_id: nil)
     end
 
@@ -25,7 +25,7 @@ class StickersController < ApplicationController
   def show
     authenticate!
     record = Airtable::StickerRecord.find(params[:id])
-    if record&.allowed
+    if record
       render json: record.as_detail_json
     else
       head :not_found

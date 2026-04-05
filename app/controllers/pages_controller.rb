@@ -22,7 +22,7 @@ class PagesController < ApplicationController
 
   def designs
     designs = begin
-      Airtable::StickerRecord.visible.all.map do |s|
+      Airtable::StickerRecord.all.map do |s|
         {
           id: s.id,
           name: s.name,
