@@ -2,7 +2,7 @@
   "private": true,
   "type": "module",
   "devDependencies": {
-    "vite": "^8.0.1",
+    "vite": "^8.0.5",
     "vite-plugin-ruby": "^5.2.0"
   },
   "dependencies": {
