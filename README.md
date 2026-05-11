@@ -1,4 +1,4 @@
-# Redundant! See https://github.com/hackclub/stickersv2
+# Redundant! See https://github.com/hackclub/stickers
 
 
 <div align="center">
