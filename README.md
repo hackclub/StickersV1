@@ -1,3 +1,6 @@
+# Redundant! See https://github.com/hackclub/stickersv2
+
+
 <div align="center">
   <img src="https://assets.hackclub.com/flag-standalone.svg" width="100" alt="Hack Club flag" />
   <h2><a href="https://stickers.hackclub.com">stickers.hackclub.com</a></h2>
