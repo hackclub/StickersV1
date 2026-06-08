@@ -11,7 +11,7 @@ gem "inertia_rails", "~> 3.19"
 gem "vite_rails", "~> 3.10"
 
 # Airtable ORM
-gem "airctiverecord", "~> 0.2.2"
+gem "airctiverecord", "~> 0.2.3"
 gem "norairrecord", "~> 0.5"
 
 # Auth (OmniAuth OIDC)
