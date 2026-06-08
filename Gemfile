@@ -8,7 +8,7 @@ gem "pg", "~> 1.1"
 gem "puma", ">= 5.0"
 # Inertia.js + Vite for Svelte 5 frontend
 gem "inertia_rails", "~> 3.19"
-gem "vite_rails", "~> 3.10"
+gem "vite_rails", "~> 3.11"
 
 # Airtable ORM
 gem "airctiverecord", "~> 0.2.2"
